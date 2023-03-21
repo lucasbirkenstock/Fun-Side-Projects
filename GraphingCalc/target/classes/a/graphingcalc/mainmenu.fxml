@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="a.graphingcalc.Controller">
+   <children>
+      <Button fx:id="buttonGraph" layoutX="531.0" layoutY="229.0" mnemonicParsing="false" text="Graph!" />
+      <Label layoutX="271.0" layoutY="231.0" prefHeight="22.0" prefWidth="36.0" text="f(x)=" />
+      <Button id="xbutton" fx:id="buttonX" layoutX="105.0" layoutY="54.0" mnemonicParsing="false" onAction="#appendX" prefHeight="37.0" prefWidth="41.0" text="x" />
+      <Button id="plusbutton" fx:id="buttonAdd" layoutX="531.0" layoutY="95.0" mnemonicParsing="false" onAction="#appendPlus" prefHeight="37.0" prefWidth="41.0" text="+" />
+      <TextField fx:id="maxX" alignment="CENTER" layoutX="221.0" layoutY="195.0" maxWidth="40.0" minWidth="40.0" prefHeight="25.0" prefWidth="40.0" text="10" />
+      <TextField fx:id="minX" alignment="CENTER" layoutX="221.0" layoutY="227.0" maxWidth="40.0" prefHeight="25.0" prefWidth="40.0" text="-10" />
+      <TextField fx:id="maxY" alignment="CENTER" layoutX="116.0" layoutY="195.0" maxWidth="40.0" prefHeight="25.0" prefWidth="40.0" text="10" />
+      <TextField fx:id="minY" alignment="CENTER" layoutX="116.0" layoutY="227.0" maxWidth="40.0" prefHeight="25.0" prefWidth="40.0" text="-10" />
+      <Label layoutX="74.0" layoutY="200.0" text="Max Y:" />
+      <Label layoutX="179.0" layoutY="200.0" text="Max X:" />
+      <Label layoutX="74.0" layoutY="231.0" text="Min Y:" />
+      <Label layoutX="182.0" layoutY="231.0" text="Min X:" />
+      <Label layoutX="54.0" layoutY="9.0" prefHeight="27.0" prefWidth="544.0" text="Welcome to Birkenstock's Basic Graphing Calculator!" textAlignment="CENTER">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Button id="(button" fx:id="buttonOpenPar" layoutX="105.0" layoutY="95.0" mnemonicParsing="false" onAction="#appendParO" prefHeight="37.0" prefWidth="41.0" text="(" />
+      <Button id=")button" fx:id="buttonClosePar" layoutX="151.0" layoutY="95.0" mnemonicParsing="false" onAction="#appendParC" prefHeight="37.0" prefWidth="41.0" text=")" />
+      <Button id="power2button" fx:id="buttonSquare" layoutX="151.0" layoutY="54.0" mnemonicParsing="false" onAction="#appendSquare" prefHeight="37.0" prefWidth="41.0" text="a^2" />
+      <Button id="powerNbutton" fx:id="buttonPower" layoutX="197.0" layoutY="54.0" mnemonicParsing="false" onAction="#appendPow" prefHeight="37.0" prefWidth="41.0" text="a^n" />
+      <Button id="sqrtbutton" fx:id="buttonSqrt" layoutX="198.0" layoutY="95.0" mnemonicParsing="false" onAction="#appendSqrt" prefHeight="37.0" prefWidth="41.0" text="Sqrt(">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+      <Button id="divbutton" fx:id="buttonDiv" layoutX="531.0" layoutY="54.0" mnemonicParsing="false" onAction="#appendDiv" prefHeight="37.0" prefWidth="41.0" text="/" />
+      <Button id="subbutton" fx:id="buttonSub" layoutX="531.0" layoutY="135.0" mnemonicParsing="false" onAction="#appendSub" prefHeight="37.0" prefWidth="41.0" text="-" />
+      <Button id="multbutton" fx:id="buttonMult" layoutX="531.0" layoutY="177.0" mnemonicParsing="false" onAction="#appendMult" prefHeight="37.0" prefWidth="41.0" text="*" />
+      <Button fx:id="button1" layoutX="358.0" layoutY="54.0" mnemonicParsing="false" onAction="#appendOne" prefHeight="37.0" prefWidth="41.0" text="1" />
+      <Button id="2button" fx:id="button2" layoutX="406.0" layoutY="54.0" mnemonicParsing="false" onAction="#appendTwo" prefHeight="37.0" prefWidth="41.0" text="2" />
+      <Button id="3button" fx:id="button3" layoutX="452.0" layoutY="54.0" mnemonicParsing="false" onAction="#appendThree" prefHeight="37.0" prefWidth="41.0" text="3" />
+      <Button id="4button" fx:id="button4" layoutX="358.0" layoutY="95.0" mnemonicParsing="false" onAction="#appendFour" prefHeight="37.0" prefWidth="41.0" text="4" />
+      <Button id="5button" fx:id="button5" layoutX="406.0" layoutY="95.0" mnemonicParsing="false" onAction="#appendFive" prefHeight="37.0" prefWidth="41.0" text="5" />
+      <Button id="6button" fx:id="button6" layoutX="452.0" layoutY="95.0" mnemonicParsing="false" onAction="#appendSix" prefHeight="37.0" prefWidth="41.0" text="6" />
+      <Button id="7button" fx:id="button7" layoutX="358.0" layoutY="135.0" mnemonicParsing="false" onAction="#appendSeven" prefHeight="37.0" prefWidth="41.0" text="7" />
+      <Button id="8button" fx:id="button8" layoutX="406.0" layoutY="135.0" mnemonicParsing="false" onAction="#appendEight" prefHeight="37.0" prefWidth="41.0" text="8" />
+      <Button id="9button" fx:id="button9" layoutX="452.0" layoutY="135.0" mnemonicParsing="false" onAction="#appendNine" prefHeight="37.0" prefWidth="41.0" text="9" />
+      <Button id="0button" fx:id="button0" layoutX="358.0" layoutY="177.0" mnemonicParsing="false" onAction="#appendZero" prefHeight="37.0" prefWidth="41.0" text="0" />
+      <Button id="decimalbutton" fx:id="buttondecimal" layoutX="406.0" layoutY="177.0" mnemonicParsing="false" onAction="#appendDecimal" prefHeight="37.0" prefWidth="41.0" text="." />
+      <Label fx:id="inputLabel" layoutX="304.0" layoutY="234.0" text="[Nothing]" />
+      <Button fx:id="clearInput" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#clearInput" text="Clear" />
+   </children>
+</AnchorPane>

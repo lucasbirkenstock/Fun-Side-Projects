@@ -1,0 +1,18 @@
+input = input.replace("^-", "NE"); // differentiate negative exponents from negative coefficients
+        input = input.replace("-", "+-"); // make - into +- to prepare for splitting by +
+        input = input.replace(" ", ""); // remove whitespace
+        input = input.replace("NE", "-"); // make negative exponent sign placeholder - again
+        input = input.replace("^", ""); // remove exponent sign
+        String[] split1 = input.split("\\+"); // split by +
+
+        for (int i = 0; i < split1.length; i++) {
+            if (!split1[i].contains("x")) // handle constant terms
+                split1[i] += "x0";
+
+            if (split1[i].charAt(split1[i].length()-1) == 'x') // handle x power 1 without ^1 entered by user
+                split1[i] += "1";
+
+            int coeff = Integer.parseInt(split1[i].substring(0, split1[i].indexOf('x')));
+            int power = Integer.parseInt(split1[i].substring(split1[i].indexOf('x')+1));
+            poly1.addTerm(new Term(coeff, power));
+        }
