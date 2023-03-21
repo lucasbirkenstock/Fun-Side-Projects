@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.workoutmaker.Controller">
+   <children>
+      <ImageView fx:id="dumbbellstock" fitHeight="287.0" fitWidth="263.0" layoutX="14.0" layoutY="14.0" preserveRatio="true">
+         <image>
+            <Image url="@../../../stockdumbbells.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="276.0" layoutY="146.0" mnemonicParsing="false" onAction="#switchToBuilder" text="Get Started!" />
+      <Label layoutX="213.0" layoutY="22.0" prefHeight="49.0" prefWidth="450.0" text="Welcome to Birkenstock's Bodybuilding Program Generator!" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="viewplan" layoutX="438.0" layoutY="146.0" mnemonicParsing="false" onAction="#viewResults" text="View Your Plan!" />
+      <Label fx:id="mainpageError" layoutX="439.0" layoutY="180.0" text="Create a plan first!" textFill="RED" visible="false" />
+   </children>
+</AnchorPane>
