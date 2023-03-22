@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class Controller {
     private Parent mRoot;
     private Stage mStage;
     private Scene mScene;
-    private ArrayList accountList;
+    private ArrayList accountList = new ArrayList();
 
     @FXML
     private Label welcomeText;
@@ -41,11 +42,11 @@ public class Controller {
 
 
     // Helper methods for account creation **
-    public boolean checkMatchingPassword() {
+    public boolean isMatchingPassword() {
         return password1.getText().equals(password2.getText());
     }
 
-    public boolean checkUniqueEmail() {
+    public boolean isUniqueEmail() {
         for (Object a : accountList) {
             a = (Account) a;
             if (((Account) a).getEmailAddress().equals(emailAddress.getText())) {
@@ -55,12 +56,21 @@ public class Controller {
         return true;
     }
 
-    public boolean checkFieldsHaveContent() {
+    public boolean fieldsHaveContent() {
         return (!firstName.getText().trim().isEmpty() && !lastName.getText().trim().isEmpty() && !accountName.getText().trim().isEmpty() && !emailAddress.getText().trim().isEmpty() && !password1.getText().trim().isEmpty() && !password2.getText().trim().isEmpty());
+    }
+
+    public void displayPasswordError() {
+        passwordMatchError.setVisible(true);
+    }
+
+    public void displayFieldsError() {
+        enterAllFieldsError.setVisible(true);
     }
     // **
 
     // Account creation text fields **
+
     @FXML
     private TextField firstName = new TextField();
     @FXML
@@ -73,21 +83,34 @@ public class Controller {
     private TextField password1 = new TextField();
     @FXML
     private TextField password2 = new TextField();
+    @FXML
+    private Text passwordMatchError = new Text();
+    @FXML
+    private Text enterAllFieldsError = new Text();
 
 
 
     @FXML // From account creation screen, switch to login page.
     public void createAccount(ActionEvent event) throws IOException {
+        if (isUniqueEmail() && isMatchingPassword() && fieldsHaveContent()) {
+            mRoot = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
+            mStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            mScene = new Scene(mRoot);
+            mStage.setScene(mScene);
+            mStage.show();
+        } else {
+            if (!isMatchingPassword()) {
+                displayPasswordError();
+            }
+            if (!isUniqueEmail()) {
 
-        if (checkUniqueEmail() && checkMatchingPassword() && checkFieldsHaveContent()) {
-            //accountList.add(new Account(...));
+            }
+            if (!fieldsHaveContent()) {
+                displayFieldsError();
+            }
+
         }
 
-        mRoot = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
-        mStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        mScene = new Scene(mRoot);
-        mStage.setScene(mScene);
-        mStage.show();
-        System.out.println(checkMatchingPassword());
+
     }
 }
