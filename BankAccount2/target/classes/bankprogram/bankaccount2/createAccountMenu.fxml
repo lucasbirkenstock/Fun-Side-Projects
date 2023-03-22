@@ -38,5 +38,6 @@
       <Button layoutX="272.0" layoutY="328.0" mnemonicParsing="false" onAction="#createAccount" text="Submit" />
       <Text fx:id="passwordMatchError" fill="RED" layoutX="233.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match" visible="false" />
       <Text fx:id="enterAllFieldsError" fill="RED" layoutX="245.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter all fields" visible="false" />
+      <Text fx:id="emailInUseError" fill="RED" layoutX="487.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email in use" visible="false" />
    </children>
 </AnchorPane>

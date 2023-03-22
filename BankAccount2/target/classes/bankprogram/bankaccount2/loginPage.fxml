@@ -26,9 +26,9 @@
       <Text layoutX="148.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email address: " />
       <Text layoutX="168.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password: " />
       <Text layoutX="226.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No account?" />
-      <TextField layoutX="239.0" layoutY="229.0" />
-      <TextField layoutX="239.0" layoutY="260.0" />
-      <Button layoutX="274.0" layoutY="289.0" mnemonicParsing="false" text="Log in" />
+      <TextField fx:id="loginEmail" layoutX="239.0" layoutY="229.0" />
+      <TextField fx:id="loginPassword" layoutX="239.0" layoutY="260.0" />
+      <Button layoutX="274.0" layoutY="289.0" mnemonicParsing="false" onAction="#login" text="Log in" />
       <Button layoutX="304.0" layoutY="368.0" mnemonicParsing="false" onAction="#switchToCreateAccount" text="Create one!" />
    </children>
 </AnchorPane>

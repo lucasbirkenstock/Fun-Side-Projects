@@ -19,17 +19,8 @@ public class Controller {
     private Parent mRoot;
     private Stage mStage;
     private Scene mScene;
-    private ArrayList accountList = new ArrayList();
-
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
-
+    private static ArrayList<Account> accountList = new ArrayList<>();
+    private Model theModel = new Model();
 
     @FXML // From login screen, switch to account creation page.
     public void switchToCreateAccount(ActionEvent event) throws IOException {
@@ -42,35 +33,33 @@ public class Controller {
 
 
     // Helper methods for account creation **
-    public boolean isMatchingPassword() {
-        return password1.getText().equals(password2.getText());
-    }
+    public boolean isMatchingPassword() { return password1.getText().equals(password2.getText()); }
 
     public boolean isUniqueEmail() {
-        for (Object a : accountList) {
-            a = (Account) a;
-            if (((Account) a).getEmailAddress().equals(emailAddress.getText())) {
+        for (int i = 0; i < accountList.size(); i++) {
+            if (accountList.get(i).getEmailAddress().equals(emailAddress.getText())) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean fieldsHaveContent() {
-        return (!firstName.getText().trim().isEmpty() && !lastName.getText().trim().isEmpty() && !accountName.getText().trim().isEmpty() && !emailAddress.getText().trim().isEmpty() && !password1.getText().trim().isEmpty() && !password2.getText().trim().isEmpty());
-    }
+    public boolean fieldsHaveContent() { return (!firstName.getText().trim().isEmpty() && !lastName.getText().trim().isEmpty() && !accountName.getText().trim().isEmpty() && !emailAddress.getText().trim().isEmpty() && !password1.getText().trim().isEmpty() && !password2.getText().trim().isEmpty()); }
 
-    public void displayPasswordError() {
-        passwordMatchError.setVisible(true);
-    }
+    public void displayPasswordError() { passwordMatchError.setVisible(true); }
 
-    public void displayFieldsError() {
-        enterAllFieldsError.setVisible(true);
-    }
+    public void displayFieldsError() { enterAllFieldsError.setVisible(true); }
+
+    public void displayEmailError() { emailInUseError.setVisible(true); }
     // **
 
-    // Account creation text fields **
+    // Login page FXML
+    @FXML
+    private TextField loginEmail = new TextField();
+    @FXML
+    private TextField loginPassword = new TextField();
 
+    // Account creation page FXML
     @FXML
     private TextField firstName = new TextField();
     @FXML
@@ -87,12 +76,18 @@ public class Controller {
     private Text passwordMatchError = new Text();
     @FXML
     private Text enterAllFieldsError = new Text();
+    @FXML
+    private Text emailInUseError = new Text();
+
+    // Logged in homepage fields
+    @FXML
+    private Label welcomeMessage = new Label();
 
 
-
-    @FXML // From account creation screen, switch to login page.
+    @FXML // From account creation screen, switch to login page via Create Account button. Checks for errors.
     public void createAccount(ActionEvent event) throws IOException {
         if (isUniqueEmail() && isMatchingPassword() && fieldsHaveContent()) {
+            accountList.add(new Account(emailAddress.getText(), firstName.getText(), lastName.getText(), accountName.getText(), password1.getText()));
             mRoot = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
             mStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             mScene = new Scene(mRoot);
@@ -103,14 +98,32 @@ public class Controller {
                 displayPasswordError();
             }
             if (!isUniqueEmail()) {
-
+                displayEmailError();
             }
             if (!fieldsHaveContent()) {
                 displayFieldsError();
             }
+        }
+    }
 
+    public void login(ActionEvent event) throws IOException {
+        for (int i = 0; i < accountList.size(); i++) {
+            if (accountList.get(i).getEmailAddress().equals(loginEmail.getText()) && accountList.get(i).getPassword().equals(loginPassword.getText())) {
+                theModel.setAccount(accountList.get(i));
+                mRoot = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+                mStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                mScene = new Scene(mRoot);
+                mStage.setScene(mScene);
+                mStage.show();
+                initializeHomepage();
+                break;
+            }
+            return;
         }
 
+    }
 
+    public void initializeHomepage() {
+        welcomeMessage.setText("Welcome, " + theModel.getAccount().getFirstName() + " " + theModel.getAccount().getLastName());
     }
 }

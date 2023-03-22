@@ -18,4 +18,20 @@ public class Account {
     public String getEmailAddress() {
         return mEmailAddress;
     }
+
+    public String getPassword () {
+        return mPassword;
+    }
+
+    public String toString() {
+        return mEmailAddress;
+    }
+
+    public String getFirstName() {
+        return mFirstName;
+    }
+
+    public String getLastName() {
+        return mLastName;
+    }
 }
