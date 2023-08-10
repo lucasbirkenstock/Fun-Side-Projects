@@ -53,6 +53,8 @@ public class Controller implements Initializable {
     @FXML
     private Button revealButtonFB = new Button();
     @FXML
+    private Button refreshUL = new Button();
+    @FXML
     private ListView<Exercise> lowerlistUL = new ListView<>();
     @FXML
     private ListView<Exercise> upperlistUL = new ListView<>();
@@ -96,6 +98,27 @@ public class Controller implements Initializable {
             fullbodyLIST.getItems().addAll(generatedProgram);
             fullbodyLIST.setVisible(true);
             revealButtonFB.setVisible(false);
+        }
+    }
+
+    @FXML
+    public void refreshUL(ActionEvent event) throws IOException {
+        if (lowerlistUL.getItems().isEmpty()) {
+            for (Exercise e : generatedLower) {
+                e.modifyName();
+            }
+            lowerlistUL.getItems().addAll(generatedLower);
+            lowerlistUL.setVisible(true);
+            refreshUL.setVisible(false);
+        }
+
+        if (upperlistUL.getItems().isEmpty()) {
+            for (Exercise e : generatedUpper) {
+                e.modifyName();
+            }
+            upperlistUL.getItems().addAll(generatedUpper);
+            upperlistUL.setVisible(true);
+            refreshUL.setVisible(false);
         }
     }
 
@@ -398,7 +421,7 @@ public class Controller implements Initializable {
                 } while (fullLoop());
 
                 break;
-            case 4:
+            case 4,5,6,7:
                 // upper lower
                 // **** Calculates weights of exercises added by user (same as fullbody)
                 for (Object o : generatedList) {
@@ -609,12 +632,6 @@ public class Controller implements Initializable {
                         }
                     }
                 } while (fullLoop());
-                break;
-            case 5:
-                // ???
-                break;
-            case 6,7:
-                // PPL
                 break;
         }
     }
